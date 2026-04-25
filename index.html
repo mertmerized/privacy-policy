@@ -906,6 +906,11 @@
     const termsTocLinks = document.querySelectorAll('.toc-terms a');
     const privacySectionEls = document.querySelectorAll('#doc-privacy section[id]');
     const termsSectionEls = document.querySelectorAll('#doc-terms section[id]');
+    const DEFAULT_HASH_BY_DOC = {
+      privacy: '#s0',
+      terms: '#t1',
+      other: '#o0'
+    };
 
     // Intersection observer for fade-in
     const observer = new IntersectionObserver(entries => {
@@ -913,7 +918,16 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('section').forEach(s => observer.observe(s));
 
-    function activateDoc(docName) {
+    function getDocNameFromHash(hashValue) {
+      if (!hashValue || !hashValue.startsWith('#')) return null;
+      const id = hashValue.slice(1);
+      if (id.startsWith('s')) return 'privacy';
+      if (id.startsWith('t')) return 'terms';
+      if (id.startsWith('o')) return 'other';
+      return null;
+    }
+
+    function activateDoc(docName, updateHash = false) {
       document.body.setAttribute('data-active-doc', docName);
 
       docTabs.forEach(tab => {
@@ -940,10 +954,17 @@
         privacyTocLinks.forEach(link => link.classList.remove('active'));
         termsTocLinks.forEach(link => link.classList.remove('active'));
       }
+
+      if (updateHash) {
+        const nextHash = DEFAULT_HASH_BY_DOC[docName] || '#s0';
+        if (window.location.hash !== nextHash) {
+          window.history.replaceState(null, '', nextHash);
+        }
+      }
     }
 
     docTabs.forEach(tab => {
-      tab.addEventListener('click', () => activateDoc(tab.dataset.doc));
+      tab.addEventListener('click', () => activateDoc(tab.dataset.doc, true));
     });
 
     // TOC active link highlight (privacy + terms tabs)
@@ -962,6 +983,17 @@
     }, { threshold: 0.4 });
     privacySectionEls.forEach(s => tocObserver.observe(s));
     termsSectionEls.forEach(s => tocObserver.observe(s));
+
+    // Deep-link support, e.g. #t1 opens Terms, #s0 opens Privacy.
+    function syncDocWithHash() {
+      const docFromHash = getDocNameFromHash(window.location.hash);
+      if (docFromHash) {
+        activateDoc(docFromHash, false);
+      }
+    }
+
+    syncDocWithHash();
+    window.addEventListener('hashchange', syncDocWithHash);
   </script>
 </body>
 </html>
