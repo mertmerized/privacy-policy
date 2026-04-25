@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -10,14 +10,14 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0e0f13;
-      --surface: #16181f;
-      --border: #252830;
-      --accent: #c8a96e;
-      --accent-dim: rgba(200,169,110,0.12);
-      --text: #e8e6e0;
-      --muted: #7a7870;
-      --soft: #b0ad a4;
+      --bg: #f6f7f9;
+      --surface: #ffffff;
+      --border: #d9dee6;
+      --accent: #1f3a60;
+      --accent-dim: rgba(31,58,96,0.08);
+      --text: #1a2433;
+      --muted: #5f6b7c;
+      --soft: #8a94a3;
     }
 
     html { scroll-behavior: smooth; }
@@ -63,7 +63,7 @@
       align-items: center;
       gap: 8px;
       background: var(--accent-dim);
-      border: 1px solid rgba(200,169,110,0.25);
+      border: 1px solid rgba(31,58,96,0.25);
       border-radius: 100px;
       padding: 6px 14px 6px 8px;
       margin-bottom: 28px;
@@ -103,7 +103,7 @@
     /* Quick summary card */
     .summary-card {
       background: var(--accent-dim);
-      border: 1px solid rgba(200,169,110,0.2);
+      border: 1px solid rgba(31,58,96,0.2);
       border-radius: 12px;
       padding: 28px 32px;
       margin-bottom: 56px;
@@ -181,8 +181,17 @@
       line-height: 1.2;
     }
 
+    h3 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 19px;
+      color: var(--accent);
+      margin: 18px 0 10px;
+      line-height: 1.3;
+    }
+
     p {
-      color: rgba(232,230,224,0.75);
+      color: rgba(26,36,51,0.78);
       margin-bottom: 14px;
       font-size: 15px;
     }
@@ -199,7 +208,7 @@
       align-items: flex-start;
       gap: 12px;
       font-size: 15px;
-      color: rgba(232,230,224,0.75);
+      color: rgba(26,36,51,0.78);
       padding: 10px 0;
       border-bottom: 1px solid var(--border);
     }
@@ -218,7 +227,7 @@
     a {
       color: var(--accent);
       text-decoration: none;
-      border-bottom: 1px solid rgba(200,169,110,0.3);
+      border-bottom: 1px solid rgba(31,58,96,0.3);
       transition: border-color 0.2s;
     }
 
@@ -232,7 +241,7 @@
       padding: 16px 20px;
       margin: 18px 0;
       font-size: 14px;
-      color: rgba(232,230,224,0.8);
+      color: rgba(26,36,51,0.82);
     }
 
     /* Footer */
@@ -251,6 +260,48 @@
       color: var(--accent);
       font-weight: 400;
       font-size: 15px;
+    }
+
+    .doc-switcher {
+      display: flex;
+      gap: 10px;
+      margin: 0 0 32px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+
+    .doc-tab {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 100px;
+      padding: 8px 14px;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .doc-tab:hover {
+      border-color: rgba(31,58,96,0.35);
+      color: var(--accent);
+    }
+
+    .doc-tab.active {
+      background: var(--accent-dim);
+      color: var(--accent);
+      border-color: rgba(31,58,96,0.35);
+    }
+
+    .doc-panel { display: none; }
+    .doc-panel.active { display: block; }
+
+    .placeholder-note {
+      color: var(--muted);
+      font-size: 14px;
+      margin-top: 4px;
     }
 
     /* TOC sidebar — desktop only */
@@ -277,12 +328,18 @@
     }
 
     .toc a:hover, .toc a.active { color: var(--accent); }
+
+    body[data-active-doc="terms"] .toc-privacy,
+    body[data-active-doc="privacy"] .toc-terms,
+    body[data-active-doc="other"] .toc {
+      display: none;
+    }
   </style>
 </head>
-<body>
+<body data-active-doc="privacy">
 
   <!-- TOC Desktop -->
-  <nav class="toc" aria-label="Table of Contents">
+  <nav class="toc toc-privacy" aria-label="Privacy Policy table of contents">
     <a href="#s0">Data Controller</a>
     <a href="#s1">Overview</a>
     <a href="#s2">Data We Collect</a>
@@ -304,17 +361,46 @@
     <a href="#s18">Other Regions</a>
   </nav>
 
+  <nav class="toc toc-terms" aria-label="Terms of Use table of contents">
+    <a href="#t1">About LockdIn</a>
+    <a href="#t2">License Grant</a>
+    <a href="#t3">Eligibility</a>
+    <a href="#t4">Permissions &amp; Privacy</a>
+    <a href="#t5">Regional Privacy Rights</a>
+    <a href="#t6">User Content</a>
+    <a href="#t7">Intellectual Property</a>
+    <a href="#t8">No Guarantee</a>
+    <a href="#t9">Subscriptions</a>
+    <a href="#t10">Acceptable Use</a>
+    <a href="#t11">Warranty Disclaimer</a>
+    <a href="#t12">Liability</a>
+    <a href="#t13">Indemnification</a>
+    <a href="#t14">Force Majeure</a>
+    <a href="#t15">Changes</a>
+    <a href="#t16">Termination</a>
+    <a href="#t17">Governing Law</a>
+    <a href="#t18">Severability</a>
+    <a href="#t19">Contact</a>
+  </nav>
+
   <div class="container">
 
     <header>
       <div class="app-badge">
         <span class="app-badge-dot"></span>
-        LockdIn · Privacy Policy
+        LockdIn · Legal Documents
       </div>
-      <h1>Your data,<br><em>your control.</em></h1>
-      <p class="meta">Last updated: April 23, 2026</p>
+      <h1>Legal documents,<br><em>in one place.</em></h1>
+      <p class="meta">Last updated: April 25, 2026</p>
     </header>
 
+    <nav class="doc-switcher" aria-label="Legal document navigation">
+      <button class="doc-tab active" type="button" data-doc="privacy">Privacy Policy</button>
+      <button class="doc-tab" type="button" data-doc="terms">Terms of Use</button>
+      <button class="doc-tab" type="button" data-doc="other">Other Legal Docs</button>
+    </nav>
+
+    <article id="doc-privacy" class="doc-panel active">
     <!-- Quick summary -->
     <div class="summary-card">
       <h3>What you need to know at a glance</h3>
@@ -557,6 +643,254 @@
       <p>We aim to apply the principles of data minimisation, purpose limitation, and transparency globally, regardless of whether your jurisdiction has specific legislative requirements.</p>
       <p>For jurisdiction-specific questions or to exercise any applicable privacy rights not addressed above, please contact us using the details in Section 14.</p>
     </section>
+    </article>
+    <article id="doc-terms" class="doc-panel">
+      <div class="summary-card">
+        <h3>Terms of Use at a glance</h3>
+        <div class="summary-grid">
+          <div class="summary-item">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            LockdIn
+          </div>
+          <div class="summary-item">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Terms of Use
+          </div>
+          <div class="summary-item">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Effective Date: April 25, 2026
+          </div>
+          <div class="summary-item">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Last Updated: April 25, 2026
+          </div>
+          <div class="summary-item">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Applicable Worldwide
+          </div>
+          <div class="summary-item">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Welcome to LockdIn. By downloading, installing, or using this application, you agree to be bound by these Terms of Use (&quot;Terms&quot;). Please read them carefully. These Terms apply to all users of LockdIn regardless of your country or region of residence.
+          </div>
+        </div>
+      </div>
+      <section id="t1" class="visible">
+        <div class="section-number">T01</div>
+        <h2>About LockdIn</h2>
+        <p>LockdIn is a productivity application designed to help users focus through structured, timer-based work sessions. The app includes the following core features:</p>
+        <ul>
+          <li>Timer-based focus sessions</li>
+          <li>Photo capture and attachment to sessions</li>
+          <li>Session history and productivity analytics</li>
+        </ul>
+        <p>LockdIn is intended for personal, non-commercial use only.</p>
+      </section>
+      <section id="t2" class="visible">
+        <div class="section-number">T02</div>
+        <h2>License Grant</h2>
+        <p>Subject to your compliance with these Terms, LockdIn grants you a limited, revocable, non-exclusive, non-transferable, non-sublicensable license to download, install, and use the application solely for your personal, non-commercial purposes.</p>
+        <p>This license does not include any right to:</p>
+        <ul>
+          <li>Sublicense, sell, resell, transfer, assign, or commercially exploit the app</li>
+          <li>Modify, adapt, translate, or create derivative works based on the app</li>
+          <li>Reverse engineer, decompile, disassemble, or otherwise attempt to derive the source code of the app</li>
+          <li>Remove, alter, or obscure any proprietary notices or labels within the app</li>
+        </ul>
+        <p>This license is automatically revoked if you violate any of these Terms. Upon revocation, you must cease all use of the app and delete it from your devices.</p>
+      </section>
+      <section id="t3" class="visible">
+        <div class="section-number">T03</div>
+        <h2>Eligibility &amp; Age Requirements</h2>
+        <p>You must be at least 13 years of age to use LockdIn. Users in jurisdictions where the minimum digital age of consent is higher (such as 16 in certain EU member states) must meet that higher local requirement.</p>
+        <p>By using LockdIn, you represent and warrant that you meet the applicable age requirement in your jurisdiction. If you are a minor, you confirm that you have obtained the consent of a parent or legal guardian.</p>
+        <p>LockdIn does not knowingly collect personal data from children under the applicable minimum age. If we become aware that a user is under the required age, we will take steps to discontinue service to that user.</p>
+      </section>
+      <section id="t4" class="visible">
+        <div class="section-number">T04</div>
+        <h2>Device Permissions, Data Storage &amp; Privacy</h2>
+        <h3>4.1 Local-First Architecture</h3>
+        <p>LockdIn is built on a local-first principle. All user-generated content — including notes, photos, session records, and personal preferences — is stored exclusively on your device. This data is never uploaded to or accessible by LockdIn&#x27;s servers.</p>
+        <p>Important consequences of this architecture:</p>
+        <ul>
+          <li>Your personal content is entirely private and under your control</li>
+          <li>Uninstalling the app will permanently delete all locally stored data</li>
+          <li>We are unable to recover any data lost due to device failure, factory reset, or accidental deletion</li>
+        </ul>
+        <h3>4.2 Camera Access</h3>
+        <p>LockdIn may request access to your device&#x27;s camera solely for the purpose of capturing photos to attach to your focus sessions. Camera access is:</p>
+        <ul>
+          <li>Always subject to your explicit permission via your device&#x27;s operating system permission prompt</li>
+          <li>Used exclusively within the app for session photo capture — never for background access, surveillance, or any other purpose</li>
+          <li>Never used to transmit images to external servers; all photos captured through LockdIn remain stored locally on your device at all times</li>
+        </ul>
+        <p>You may revoke camera permission at any time through your device&#x27;s system settings. Revoking this permission will disable the photo capture feature but will not affect any other functionality of the app.</p>
+        <h3>4.3 Notifications</h3>
+        <p>LockdIn may request permission to send push notifications to your device in order to deliver timer alerts, session reminders, and other productivity-related prompts. Notification access is:</p>
+        <ul>
+          <li>Always subject to your explicit permission via your device&#x27;s operating system</li>
+          <li>Used solely to support core timer functionality and session management</li>
+          <li>Never used for third-party advertising or unsolicited marketing communications</li>
+        </ul>
+        <p>You may enable or disable notifications at any time through your device&#x27;s system settings (Settings → Notifications → LockdIn). Disabling notifications will not affect your locally stored data or other app features.</p>
+        <h3>4.4 Analytics (PostHog)</h3>
+        <p>LockdIn uses PostHog to collect pseudonymous, device-level usage analytics. PostHog assigns a randomly generated identifier that is not directly linked to a user&#x27;s name, email address, account identity, or any other directly identifying information. This identifier is used solely to aggregate usage patterns and improve app performance.</p>
+        <p>Data collected through analytics may include:</p>
+        <ul>
+          <li>Feature usage patterns and session frequency</li>
+          <li>App performance metrics and crash reports</li>
+        </ul>
+        <p>General interaction data (e.g., which screens are visited)</p>
+        <p>No names, email addresses, precise location data, photos, or session content are ever collected or transmitted. For more information on PostHog&#x27;s data practices, please visit posthog.com/privacy.</p>
+        <h3>4.5 Subscription &amp; Payment</h3>
+        <p>Premium features, if any, are purchased through the Apple App Store or Google Play Store. LockdIn does not directly collect, process, or store any payment information. All billing, subscription management, and refunds are governed exclusively by the applicable platform&#x27;s terms and policies.</p>
+        <h3>4.6 International Data Transfers</h3>
+        <p>Analytics data processed by PostHog may be transferred to and stored in countries other than your country of residence, including the United States. Such transfers are conducted in accordance with applicable data protection laws, including Standard Contractual Clauses (SCCs) where required under GDPR and equivalent mechanisms under other applicable frameworks.</p>
+      </section>
+      <section id="t5" class="visible">
+        <div class="section-number">T05</div>
+        <h2>Regional Privacy Rights</h2>
+        <p>Depending on your country or region of residence, you may have additional rights with respect to your data. Because LockdIn stores all user content locally on your device and does not collect directly identifying personal data, most data subject rights can be exercised directly by managing or deleting the app on your device. For analytics-related requests, contact us at the address in Section 19.</p>
+        <h3>[ European Union &amp; EEA — GDPR ]</h3>
+        <p>If you are located in the European Union or European Economic Area, you have rights under the General Data Protection Regulation (GDPR), including the right to access, rectification, erasure, restriction of processing, data portability, and the right to object to processing.</p>
+        <p>Regarding our legal basis for analytics processing: where required by applicable law (including the ePrivacy Directive), we rely on your consent. Otherwise, we may rely on our legitimate interest in improving app performance and usability (Article 6(1)(f) GDPR). You may withdraw consent or object to processing at any time by contacting us.</p>
+        <h3>[ United States — CCPA / CPRA (California) ]</h3>
+        <p>If you are a California resident, the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA) may apply. LockdIn does not sell or share your personal information. The pseudonymous analytics identifiers assigned by PostHog are not used for cross-context behavioral advertising. You have the right to know, delete, and opt-out of sale (not applicable here). To submit a privacy request, contact us at the address in Section 19.</p>
+        <h3>[ United States — COPPA ]</h3>
+        <p>LockdIn does not knowingly collect personal information from children under 13 in the United States, in compliance with the Children&#x27;s Online Privacy Protection Act (COPPA). If you believe a child under 13 has provided personal information through the app, please contact us immediately.</p>
+        <h3>[ Brazil — LGPD ]</h3>
+        <p>If you are located in Brazil, the Lei Geral de Proteção de Dados (LGPD) may apply. You have the right to access, correct, delete, and port your personal data, as well as to revoke consent for processing. Because LockdIn stores all personal content locally and only processes pseudonymous analytics data, most of these rights can be exercised by managing your device directly. For analytics-related requests, contact us at the address in Section 19.</p>
+        <h3>[ Russia — Federal Law No. 242-FZ ]</h3>
+        <p>LockdIn acknowledges Russia&#x27;s data localization requirements under Federal Law No. 242-FZ. As LockdIn does not collect personal data from Russian users (all content is stored locally on your device), and analytics data is pseudonymous and not tied to an identified individual, we do not store personal data of Russian users on foreign servers.</p>
+        <h3>[ Indonesia — Personal Data Protection Law (UU PDP 2022) ]</h3>
+        <p>If you are located in Indonesia, your use of LockdIn is subject to Indonesia&#x27;s Personal Data Protection Law (UU PDP 2022). LockdIn processes only pseudonymous analytics data and does not collect personal data as defined under UU PDP. You retain full control over your personal content, which is stored solely on your device.</p>
+        <h3>[ Asia-Pacific — Other Jurisdictions ]</h3>
+        <p>LockdIn respects applicable privacy laws across Asia-Pacific jurisdictions, including but not limited to the Personal Information Protection Law (PIPL) in China, the Personal Data Protection Act (PDPA) in Singapore and Thailand, the Privacy Act in Australia, and the Act on the Protection of Personal Information (APPI) in Japan. In all cases, LockdIn&#x27;s local-first design means that no directly identifiable personal data is collected or transferred internationally.</p>
+      </section>
+      <section id="t6" class="visible">
+        <div class="section-number">T06</div>
+        <h2>User Content</h2>
+        <p>You retain full ownership of all content you create within LockdIn, including written notes and photos. This content exists solely on your device, and LockdIn has no access to it.</p>
+        <p>You agree not to use LockdIn to create or store content that is:</p>
+        <ul>
+          <li>Illegal under any applicable local, national, or international law</li>
+          <li>Infringing upon the intellectual property rights of any third party</li>
+          <li>Harmful, abusive, threatening, defamatory, or obscene</li>
+        </ul>
+      </section>
+      <section id="t7" class="visible">
+        <div class="section-number">T07</div>
+        <h2>Intellectual Property</h2>
+        <p>LockdIn and all associated content, trademarks, design, source code, features, and branding are the exclusive intellectual property of the developer. These Terms do not grant you any right, title, or interest in LockdIn&#x27;s proprietary materials beyond the limited license described in Section 2.</p>
+      </section>
+      <section id="t8" class="visible">
+        <div class="section-number">T08</div>
+        <h2>No Guarantee of Outcomes</h2>
+        <p>LockdIn is a productivity assistance tool. It does not guarantee any specific productivity, academic, professional, personal, or health-related outcomes. Results vary depending on individual usage patterns and personal circumstances.</p>
+        <p>We make no representations that use of LockdIn will result in improved focus, performance, or wellbeing. You use the app at your own discretion and risk.</p>
+      </section>
+      <section id="t9" class="visible">
+        <div class="section-number">T09</div>
+        <h2>Subscriptions &amp; Purchases</h2>
+        <p>LockdIn may offer optional premium features via in-app subscriptions processed through the Apple App Store or Google Play Store. By subscribing, you agree to the billing terms of the applicable platform.</p>
+        <ul>
+          <li>Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current billing period</li>
+          <li>All cancellation and refund requests must be directed to the respective app store</li>
+          <li>We reserve the right to modify, suspend, or discontinue premium features with reasonable prior notice</li>
+        </ul>
+      </section>
+      <section id="t10" class="visible">
+        <div class="section-number">T10</div>
+        <h2>Acceptable Use</h2>
+        <p>You agree not to use LockdIn to:</p>
+        <ul>
+          <li>Violate any applicable local, national, or international law or regulation</li>
+          <li>Violate Apple App Store or Google Play Store policies</li>
+          <li>Distribute spam, malware, or any harmful or malicious content</li>
+          <li>Attempt to gain unauthorized access to any part of the app or its underlying systems</li>
+          <li>Use automated tools, bots, or scripts to interact with the app</li>
+          <li>Interfere with or disrupt the integrity or performance of the app</li>
+          <li>Impersonate any person or entity or misrepresent your affiliation with any person or entity</li>
+        </ul>
+      </section>
+      <section id="t11" class="visible">
+        <div class="section-number">T11</div>
+        <h2>Disclaimer of Warranties</h2>
+        <p>LockdIn is provided on an &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; basis. To the fullest extent permitted by applicable law, we disclaim all warranties, express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, accuracy, and non-infringement.</p>
+        <p>We do not warrant that the app will operate uninterrupted, error-free, or free from malicious components. Your use of LockdIn is entirely at your own risk.</p>
+      </section>
+      <section id="t12" class="visible">
+        <div class="section-number">T12</div>
+        <h2>Limitation of Liability</h2>
+        <p>To the maximum extent permitted by applicable law, the developer and its affiliates shall not be liable for any indirect, incidental, special, consequential, or punitive damages — including loss of data, loss of profits, or loss of goodwill — arising out of or in connection with your use of or inability to use LockdIn.</p>
+        <p>Because all personal content is stored locally on your device, we expressly disclaim liability for any data loss resulting from device failure, app deletion, or operating system updates, except where such loss is caused by our gross negligence or willful misconduct.</p>
+        <p>Nothing in these Terms excludes or limits liability for: gross negligence, fraud, willful misconduct, death or personal injury caused by our negligence, or any other liability that cannot be excluded or limited under applicable mandatory law.</p>
+        <p>Some jurisdictions do not allow the exclusion or limitation of certain warranties or liabilities. In such jurisdictions, our liability is limited to the maximum extent permitted by law.</p>
+      </section>
+      <section id="t13" class="visible">
+        <div class="section-number">T13</div>
+        <h2>Indemnification</h2>
+        <p>You agree to indemnify, defend, and hold harmless the developer from and against any claims, liabilities, damages, losses, and expenses (including reasonable legal fees) arising out of or in any way connected with your use of LockdIn, your violation of these Terms, or your violation of any rights of a third party.</p>
+      </section>
+      <section id="t14" class="visible">
+        <div class="section-number">T14</div>
+        <h2>Force Majeure</h2>
+        <p>We shall not be liable for any failure or delay in performance of our obligations under these Terms to the extent caused by circumstances beyond our reasonable control, including but not limited to: acts of God, natural disasters, pandemic, war, civil unrest, government action, power or internet outages, or third-party service failures.</p>
+      </section>
+      <section id="t15" class="visible">
+        <div class="section-number">T15</div>
+        <h2>Changes to These Terms</h2>
+        <p>We reserve the right to update these Terms at any time. When we make material changes, we will update the &quot;Last Updated&quot; date at the top of this document and, where feasible, provide in-app notification.</p>
+        <p>Your continued use of LockdIn after any changes constitutes your acceptance of the revised Terms. If you do not agree with the updated Terms, you must discontinue use of the app.</p>
+      </section>
+      <section id="t16" class="visible">
+        <div class="section-number">T16</div>
+        <h2>Termination</h2>
+        <p>We reserve the right to suspend or terminate your access to LockdIn where we reasonably determine that you have materially violated these Terms or applicable law. Where practicable, we will provide notice before taking such action.</p>
+        <p>Upon termination, the license granted to you under Section 2 will immediately cease. Since your content is stored locally, it will remain on your device until you choose to delete it.</p>
+      </section>
+      <section id="t17" class="visible">
+        <div class="section-number">T17</div>
+        <h2>Governing Law &amp; Dispute Resolution</h2>
+        <p>These Terms are governed by and construed in accordance with the laws of the Republic of Turkey, without regard to its conflict of law provisions.</p>
+        <p>Any disputes arising under or in connection with these Terms shall first be attempted to be resolved through good-faith negotiation. If unresolved within 30 days, disputes shall be submitted to the exclusive jurisdiction of the courts of İzmir, Turkey.</p>
+        <p>Notwithstanding the above, nothing in this section limits your rights to bring claims under mandatory consumer protection laws applicable in your country of residence. Users in the European Union retain the right to seek remedies before their local courts and to use the EU Online Dispute Resolution platform (ec.europa.eu/consumers/odr).</p>
+      </section>
+      <section id="t18" class="visible">
+        <div class="section-number">T18</div>
+        <h2>Severability &amp; Entire Agreement</h2>
+        <p>If any provision of these Terms is found to be unenforceable or invalid under applicable law, that provision will be modified to the minimum extent necessary to make it enforceable, or severed if modification is not possible, without affecting the validity of the remaining provisions.</p>
+        <p>These Terms constitute the entire agreement between you and LockdIn with respect to your use of the app, and supersede all prior agreements or understandings.</p>
+      </section>
+      <section id="t19" class="visible">
+        <div class="section-number">T19</div>
+        <h2>Contact</h2>
+        <p>If you have any questions, concerns, or data rights requests relating to these Terms or your privacy, please contact us at:</p>
+        <ul>
+          <li>legal@lockdin.app</li>
+        </ul>
+        <p>We aim to respond to all inquiries within 30 days. For GDPR or KVKK-related requests, please indicate the nature of your request in the subject line.</p>
+        <p>— Thank you for using LockdIn.</p>
+      </section>
+    </article>
+
+    <article id="doc-other" class="doc-panel">
+      <section id="o0" class="visible">
+        <div class="section-number">O00</div>
+        <h2>Other Legal Documents</h2>
+        <p>Add additional legal pages here as separate sections (for example Privacy Notice, Cookie Policy, Distance Sales Agreement, etc.).</p>
+        <p class="placeholder-note">You can keep all legal documents in this one GitHub Pages file and navigate with the top tabs.</p>
+      </section>
+      <section id="o1" class="visible">
+        <div class="section-number">O01</div>
+        <h2>Document Slots</h2>
+        <ul>
+          <li><strong>Slot 1:</strong> Cookie Policy</li>
+          <li><strong>Slot 2:</strong> KVKK Clarification Text</li>
+          <li><strong>Slot 3:</strong> Consent / Explicit Consent Text</li>
+          <li><strong>Slot 4:</strong> Any app-specific legal annex</li>
+        </ul>
+      </section>
+    </article>
 
   </div>
 
@@ -566,26 +900,69 @@
   </footer>
 
   <script>
+    const docTabs = document.querySelectorAll('.doc-tab');
+    const docPanels = document.querySelectorAll('.doc-panel');
+    const privacyTocLinks = document.querySelectorAll('.toc-privacy a');
+    const termsTocLinks = document.querySelectorAll('.toc-terms a');
+    const privacySectionEls = document.querySelectorAll('#doc-privacy section[id]');
+    const termsSectionEls = document.querySelectorAll('#doc-terms section[id]');
+
     // Intersection observer for fade-in
-    const sections = document.querySelectorAll('section');
     const observer = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.1 });
-    sections.forEach(s => observer.observe(s));
+    document.querySelectorAll('section').forEach(s => observer.observe(s));
 
-    // TOC active link highlight
-    const tocLinks = document.querySelectorAll('.toc a');
-    const sectionEls = document.querySelectorAll('section[id]');
+    function activateDoc(docName) {
+      document.body.setAttribute('data-active-doc', docName);
+
+      docTabs.forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.doc === docName);
+      });
+
+      docPanels.forEach(panel => {
+        panel.classList.toggle('active', panel.id === `doc-${docName}`);
+      });
+
+      if (docName === 'privacy') {
+        const activeLink = document.querySelector('.toc-privacy a.active');
+        if (!activeLink) {
+          const first = document.querySelector('.toc-privacy a[href="#s0"]');
+          if (first) first.classList.add('active');
+        }
+      } else if (docName === 'terms') {
+        const activeLink = document.querySelector('.toc-terms a.active');
+        if (!activeLink) {
+          const first = document.querySelector('.toc-terms a[href="#t1"]');
+          if (first) first.classList.add('active');
+        }
+      } else {
+        privacyTocLinks.forEach(link => link.classList.remove('active'));
+        termsTocLinks.forEach(link => link.classList.remove('active'));
+      }
+    }
+
+    docTabs.forEach(tab => {
+      tab.addEventListener('click', () => activateDoc(tab.dataset.doc));
+    });
+
+    // TOC active link highlight (privacy + terms tabs)
     const tocObserver = new IntersectionObserver(entries => {
+      const activeDoc = document.body.getAttribute('data-active-doc');
+      if (activeDoc !== 'privacy' && activeDoc !== 'terms') return;
       entries.forEach(e => {
         if (e.isIntersecting) {
-          tocLinks.forEach(l => l.classList.remove('active'));
-          const active = document.querySelector(`.toc a[href="#${e.target.id}"]`);
+          const links = activeDoc === 'privacy' ? privacyTocLinks : termsTocLinks;
+          links.forEach(l => l.classList.remove('active'));
+          const selector = activeDoc === 'privacy' ? '.toc-privacy a' : '.toc-terms a';
+          const active = document.querySelector(`${selector}[href="#${e.target.id}"]`);
           if (active) active.classList.add('active');
         }
       });
     }, { threshold: 0.4 });
-    sectionEls.forEach(s => tocObserver.observe(s));
+    privacySectionEls.forEach(s => tocObserver.observe(s));
+    termsSectionEls.forEach(s => tocObserver.observe(s));
   </script>
 </body>
 </html>
+

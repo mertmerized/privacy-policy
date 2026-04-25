@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — LockdIn</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0e0f13;
+      --surface: #16181f;
+      --border: #252830;
+      --accent: #c8a96e;
+      --accent-dim: rgba(200,169,110,0.12);
+      --text: #e8e6e0;
+      --muted: #7a7870;
+      --soft: #b0ad a4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.75;
+      font-size: 16px;
+      min-height: 100vh;
+    }
+
+    /* Subtle noise texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* Header */
+    header {
+      padding: 64px 0 48px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 56px;
+    }
+
+    .app-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(200,169,110,0.25);
+      border-radius: 100px;
+      padding: 6px 14px 6px 8px;
+      margin-bottom: 28px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .app-badge-dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(36px, 6vw, 54px);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .meta {
+      font-size: 13px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
+    /* Quick summary card */
+    .summary-card {
+      background: var(--accent-dim);
+      border: 1px solid rgba(200,169,110,0.2);
+      border-radius: 12px;
+      padding: 28px 32px;
+      margin-bottom: 56px;
+    }
+
+    .summary-card h3 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 18px;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 500px) {
+      .summary-grid { grid-template-columns: 1fr; }
+    }
+
+    .summary-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text);
+      opacity: 0.85;
+    }
+
+    .summary-item .icon {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--accent);
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section-number {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+      opacity: 0.7;
+    }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 26px;
+      color: var(--text);
+      margin-bottom: 18px;
+      line-height: 1.2;
+    }
+
+    p {
+      color: rgba(232,230,224,0.75);
+      margin-bottom: 14px;
+      font-size: 15px;
+    }
+
+    p:last-child { margin-bottom: 0; }
+
+    ul {
+      list-style: none;
+      margin: 14px 0;
+    }
+
+    ul li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 15px;
+      color: rgba(232,230,224,0.75);
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    ul li:last-child { border-bottom: none; }
+
+    ul li::before {
+      content: '';
+      width: 5px; height: 5px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 9px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200,169,110,0.3);
+      transition: border-color 0.2s;
+    }
+
+    a:hover { border-color: var(--accent); }
+
+    /* Highlight box */
+    .highlight {
+      background: var(--surface);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      margin: 18px 0;
+      font-size: 14px;
+      color: rgba(232,230,224,0.8);
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    footer strong {
+      font-family: 'DM Serif Display', serif;
+      color: var(--accent);
+      font-weight: 400;
+      font-size: 15px;
+    }
+
+    /* TOC sidebar — desktop only */
+    .toc {
+      position: fixed;
+      left: max(24px, calc(50% - 520px));
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    @media (max-width: 1100px) { .toc { display: none; } }
+
+    .toc a {
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: none;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+
+    .toc a:hover, .toc a.active { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <!-- TOC Desktop -->
+  <nav class="toc" aria-label="Table of Contents">
+    <a href="#s0">Data Controller</a>
+    <a href="#s1">Overview</a>
+    <a href="#s2">Data We Collect</a>
+    <a href="#s3">Legal Basis</a>
+    <a href="#s4">Camera</a>
+    <a href="#s5">Storage</a>
+    <a href="#s6">Analytics</a>
+    <a href="#s7">Google Play</a>
+    <a href="#s8">International Transfers</a>
+    <a href="#s9">Retention</a>
+    <a href="#s10">Security</a>
+    <a href="#s11">Your Rights</a>
+    <a href="#s12">Children</a>
+    <a href="#s13">Changes</a>
+    <a href="#s14">Contact</a>
+    <a href="#s15">United States</a>
+    <a href="#s16">Brazil (LGPD)</a>
+    <a href="#s17">Asia-Pacific</a>
+    <a href="#s18">Other Regions</a>
+  </nav>
+
+  <div class="container">
+
+    <header>
+      <div class="app-badge">
+        <span class="app-badge-dot"></span>
+        LockdIn · Privacy Policy
+      </div>
+      <h1>Your data,<br><em>your control.</em></h1>
+      <p class="meta">Last updated: April 23, 2026</p>
+    </header>
+
+    <!-- Quick summary -->
+    <div class="summary-card">
+      <h3>What you need to know at a glance</h3>
+      <div class="summary-grid">
+        <div class="summary-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          No directly identifying data collected
+        </div>
+        <div class="summary-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Your images stay on your device
+        </div>
+        <div class="summary-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Analytics pseudonymous &amp; anonymous
+        </div>
+        <div class="summary-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          No data sold to third parties
+        </div>
+        <div class="summary-item">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          Global coverage: EU, US, Brazil, Asia &amp; more
+        </div>
+      </div>
+    </div>
+
+    <section id="s0">
+      <div class="section-number">00</div>
+      <h2>Data Controller</h2>
+      <p>The data controller responsible for processing your data in connection with the App is:</p>
+      <div class="highlight">
+        <strong>Mehmet Mert Altuntaş</strong><br>
+        Address: Balçova/İzmir/Türkiye<br>
+        Email: <a href="mailto:[prietoelenaaa@gmail.com]">[prietoelenaaa@gmail.com]</a>
+      </div>
+      <p>If you are located in Turkey, this entity acts as the data controller (<em>veri sorumlusu</em>) within the meaning of the Turkish Personal Data Protection Law No. 6698 (KVKK).</p>
+    </section>
+
+    <section id="s1">
+      <div class="section-number">01</div>
+      <h2>Overview</h2>
+      <p>This privacy policy describes how the LockdIn application ("App") processes data related to its users. By using the App, you acknowledge the practices described in this policy.</p>
+      <p>Our core principle is minimal data access: we only process data that is strictly necessary for the App to function, and we do not sell it to any third party.</p>
+    </section>
+
+    <section id="s2">
+      <div class="section-number">02</div>
+      <h2>Data We Process</h2>
+      <p>The App does <strong>not</strong> collect directly identifying personal data such as your name, email address, phone number, or location.</p>
+      <p>The App may process the following categories of data, which may qualify as personal data under applicable law depending on their technical configuration:</p>
+      <ul>
+        <li><strong>Pseudonymous or anonymous usage data</strong> — in-app interactions, screen views, and feature usage statistics collected via PostHog. This data may include device identifiers or IP addresses processed in anonymised or pseudonymised form.</li>
+        <li><strong>Subscription status</strong> — managed entirely through Google Play Store. This data is processed directly by Google; we receive only a subscription state flag (active / inactive) and have no access to your payment details.</li>
+      </ul>
+      <div class="highlight">
+        Even where device or usage data is processed, it is configured to minimise the ability to identify you directly. However, under KVKK and GDPR, pseudonymous data may still be considered personal data if re-identification is technically possible.
+      </div>
+    </section>
+
+    <section id="s3">
+      <div class="section-number">03</div>
+      <h2>Legal Basis for Processing</h2>
+      <p>We process data on the following legal grounds:</p>
+      <ul>
+        <li><strong>Performance of a contract</strong> — subscription status is processed to provide the service you have purchased (KVKK Art. 5(2)(c); GDPR Art. 6(1)(b)).</li>
+        <li><strong>Legitimate interests</strong> — anonymous and pseudonymous analytics are processed to improve App stability and user experience. We have assessed that this interest is not overridden by your privacy rights given the minimal nature of the data (KVKK Art. 5(2)(f); GDPR Art. 6(1)(f)).</li>
+      </ul>
+    </section>
+
+    <section id="s4">
+      <div class="section-number">04</div>
+      <h2>Camera Permission</h2>
+      <p>The App requests access to your device's camera to enable certain features.</p>
+      <ul>
+        <li>The camera is only active while you are actively using the relevant feature — it is never accessed in the background.</li>
+        <li>Photos and images captured via the camera are stored locally on your device and are never transmitted to our servers or any third party.</li>
+        <li>Image data is not subject to biometric analysis, facial recognition, or AI-based processing of any kind.</li>
+        <li>Image data is used solely to operate the feature you requested and is not processed for any other purpose.</li>
+        <li>You may revoke this permission at any time through your device's Settings.</li>
+      </ul>
+    </section>
+
+    <section id="s5">
+      <div class="section-number">05</div>
+      <h2>Storage Permission</h2>
+      <p>The App may require storage permission to save content to your device or access content already stored on it.</p>
+      <p>Any data accessed in this process remains under your sole control and is never transmitted to our servers.</p>
+    </section>
+
+    <section id="s6">
+      <div class="section-number">06</div>
+      <h2>Analytics (PostHog)</h2>
+      <p>We use <a href="https://posthog.com/privacy" target="_blank" rel="noopener">PostHog</a> to help us understand how the App is used and where it can be improved.</p>
+      <ul>
+        <li>Data is collected in anonymised or pseudonymised form, configured to prevent direct identification.</li>
+        <li>It covers which features are used and general in-app behaviour patterns.</li>
+        <li>It is never sold or shared with third parties beyond PostHog's role as a data processor.</li>
+        <li>PostHog acts as a data processor on our behalf and is contractually bound to process data only for the purposes we specify.</li>
+      </ul>
+      <p>PostHog's own privacy policy is available at <a href="https://posthog.com/privacy" target="_blank" rel="noopener">posthog.com/privacy</a>.</p>
+    </section>
+
+    <section id="s7">
+      <div class="section-number">07</div>
+      <h2>Subscription Billing (Google Play &amp; Apple App Store)</h2>
+      <p>Subscription transactions are processed through Google Play Store or Apple App Store infrastructure, depending on your platform. Your payment information is handled exclusively by Google or Apple — we have no access to it. We receive only a subscription status indicator.</p>
+      <p>Google's privacy policy is available at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</p>
+      <p>Apple's privacy policy is available at <a href="https://www.apple.com/legal/privacy" target="_blank" rel="noopener">apple.com/legal/privacy</a>.</p>
+    </section>
+
+    <section id="s8">
+      <div class="section-number">08</div>
+      <h2>International Data Transfers</h2>
+      <p>Some of our third-party service providers — including PostHog and Google — may process data on servers located outside Turkey or the European Economic Area.</p>
+      <ul>
+        <li>PostHog offers EU-region hosting options; our configuration prioritises data residency within the EU where possible.</li>
+        <li>Google operates globally under standard contractual clauses and adequacy mechanisms recognised under applicable law.</li>
+      </ul>
+      <p>Where data is transferred internationally, we take reasonable steps to ensure that adequate safeguards are in place consistent with KVKK Article 9 and GDPR Chapter V requirements.</p>
+    </section>
+
+    <section id="s9">
+      <div class="section-number">09</div>
+      <h2>Data Retention</h2>
+      <p>We retain data only for as long as necessary for the purposes described in this policy:</p>
+      <ul>
+        <li><strong>Analytics data (PostHog)</strong> — retained for up to 12 months, after which it is automatically deleted or further anonymised.</li>
+        <li><strong>Subscription status</strong> — retained for the duration of your subscription and for a reasonable period thereafter as required by applicable law.</li>
+        <li><strong>Camera and storage data</strong> — not retained by us; processed transiently on-device only.</li>
+      </ul>
+    </section>
+
+    <section id="s10">
+      <div class="section-number">10</div>
+      <h2>Data Security</h2>
+      <p>We implement appropriate technical and organisational measures to protect the data we process. Because we do not collect directly identifying personal data, the risk of a personal data breach causing significant harm is substantially reduced.</p>
+      <p>Analytics data transmitted to PostHog is encrypted in transit and stored within infrastructure that meets industry-standard security requirements.</p>
+    </section>
+
+    <section id="s11">
+      <div class="section-number">11</div>
+      <h2>Your Rights</h2>
+      <p>Under KVKK (Article 11) and GDPR (Articles 15–22), you have the following rights regarding your data:</p>
+      <ul>
+        <li><strong>Right of access</strong> — you may request confirmation of whether we process data relating to you and obtain a copy.</li>
+        <li><strong>Right to rectification</strong> — you may request correction of inaccurate data.</li>
+        <li><strong>Right to erasure</strong> — you may request deletion of your data where it is no longer necessary for the purposes for which it was collected.</li>
+        <li><strong>Right to restrict processing</strong> — you may request that we limit how we use your data in certain circumstances.</li>
+        <li><strong>Right to object</strong> — you may object to processing based on legitimate interests.</li>
+        <li><strong>Right to data portability</strong> — where applicable, you may request your data in a structured, machine-readable format.</li>
+      </ul>
+      <div class="highlight">
+        Given that we do not collect directly identifying information, some rights may be difficult to exercise in practice (e.g., we cannot link an erasure request to an anonymous analytics record). In such cases, we will explain the limitation and assist as far as technically possible.
+      </div>
+      <p>To exercise any of these rights, please contact us at the address listed in Section 00 or Section 14. We will respond within 30 days.</p>
+      <p>If you are located in the European Economic Area and believe your rights under GDPR have been violated, you have the right to lodge a complaint with the supervisory authority of your EU member state (e.g., CNIL in France, BfDI in Germany, ICO in Ireland, AEPD in Spain).</p>
+    </section>
+
+    <section id="s12">
+      <div class="section-number">12</div>
+      <h2>Children's Privacy</h2>
+      <p>The App is not directed at children under the age of 18. We do not knowingly collect or process personal data from minors. If you believe a minor has used the App and data has been collected in violation of this policy, please contact us and we will take prompt action.</p>
+    </section>
+
+    <section id="s13">
+      <div class="section-number">13</div>
+      <h2>Changes to This Policy</h2>
+      <p>We may update this privacy policy from time to time to reflect changes in the App or applicable law. If we make significant changes, we will notify you via an in-app notification. The current version is always available on this page, with the "Last updated" date revised accordingly.</p>
+    </section>
+
+    <section id="s14">
+      <div class="section-number">14</div>
+      <h2>Contact</h2>
+      <p>For any questions, requests, or complaints regarding this privacy policy or the processing of your data, please contact us:</p>
+      <ul>
+        <li>Email: <a href="mailto:[prietoelenaaa@gmail.com]">[prietoelenaaa@gmail.com]</a></li>
+        <li>In-app: Settings › Contact</li>
+      </ul>
+      <p>If you are located in Turkey and believe your rights under KVKK have been violated, you also have the right to lodge a complaint with the Personal Data Protection Authority (<em>Kişisel Verileri Koruma Kurumu</em> — KVKK): <a href="https://www.kvkk.gov.tr" target="_blank" rel="noopener">kvkk.gov.tr</a>.</p>
+    </section>
+
+    <section id="s15">
+      <div class="section-number">15</div>
+      <h2>United States — California &amp; State Privacy Rights</h2>
+      <p>If you are a resident of California or another US state with applicable privacy legislation (including Virginia, Colorado, Texas, and others), you may have additional rights under the California Consumer Privacy Act (CCPA), as amended by the California Privacy Rights Act (CPRA), or the relevant state law.</p>
+      <ul>
+        <li><strong>Right to know</strong> — you may request disclosure of the categories and specific pieces of personal information we have collected about you, the purposes for which it is used, and any third parties with whom it is shared.</li>
+        <li><strong>Right to delete</strong> — you may request deletion of personal information we have collected from you, subject to certain exceptions.</li>
+        <li><strong>Right to correct</strong> — you may request correction of inaccurate personal information.</li>
+        <li><strong>Right to opt out of sale or sharing</strong> — we do not sell your personal information or share it for cross-context behavioural advertising purposes. No opt-out is required, but you may contact us to confirm this practice.</li>
+        <li><strong>Right to non-discrimination</strong> — we will not discriminate against you for exercising any of your privacy rights.</li>
+      </ul>
+      <div class="highlight">
+        We do not sell personal information. The anonymous and pseudonymous analytics data processed via PostHog is not used for targeted advertising and does not constitute a sale or sharing of personal information under CCPA/CPRA.
+      </div>
+      <p>Regarding children: the App is not directed at children under the age of 13 and does not knowingly collect personal information from children under 13, in compliance with the Children's Online Privacy Protection Act (COPPA). Our general policy of not accepting users under 18 is a broader business decision.</p>
+      <p>To exercise your California or US state privacy rights, please contact us at the address in Section 14. We will respond within 45 days as required by law.</p>
+    </section>
+
+    <section id="s16">
+      <div class="section-number">16</div>
+      <h2>Brazil — LGPD Rights</h2>
+      <p>If you are located in Brazil, the processing of your personal data is also governed by the Lei Geral de Proteção de Dados (LGPD — Law No. 13,709/2018). We process your data on the following legal bases under LGPD Article 7:</p>
+      <ul>
+        <li><strong>Contract performance (Art. 7, V)</strong> — subscription status is processed to provide the service you have purchased.</li>
+        <li><strong>Legitimate interest (Art. 7, IX)</strong> — anonymous and pseudonymous analytics are processed to improve App stability and user experience, balanced against your privacy rights given the minimal nature of the data.</li>
+      </ul>
+      <p>Under the LGPD, you have the following rights (Art. 18):</p>
+      <ul>
+        <li><strong>Confirmation and access</strong> — you may confirm whether we process your data and request a copy.</li>
+        <li><strong>Correction</strong> — you may request correction of incomplete, inaccurate, or outdated data.</li>
+        <li><strong>Anonymisation, blocking, or deletion</strong> — you may request anonymisation, blocking, or deletion of unnecessary or excessive data, or data processed in non-compliance with LGPD.</li>
+        <li><strong>Portability</strong> — you may request portability of your data to another service or product provider.</li>
+        <li><strong>Deletion</strong> — you may request deletion of personal data processed with your consent.</li>
+        <li><strong>Information about sharing</strong> — you may request information about public and private entities with which we share your data.</li>
+        <li><strong>Right to object</strong> — you may object to processing carried out on the basis of legitimate interest.</li>
+        <li><strong>Revocation of consent</strong> — where processing is based on consent, you may revoke it at any time.</li>
+      </ul>
+      <p>If you believe your rights under LGPD have been violated, you have the right to lodge a complaint with Brazil's national data protection authority, the Autoridade Nacional de Proteção de Dados (ANPD): <a href="https://www.gov.br/anpd" target="_blank" rel="noopener">gov.br/anpd</a>.</p>
+    </section>
+
+    <section id="s17">
+      <div class="section-number">17</div>
+      <h2>Asia-Pacific Jurisdictions</h2>
+      <p>We are committed to complying with applicable privacy laws in the Asia-Pacific region. The following provides jurisdiction-specific information:</p>
+      <ul>
+        <li><strong>Japan (APPI)</strong> — If you are located in Japan, we process your data in accordance with the Act on the Protection of Personal Information (APPI). The purpose of processing your data is described in Section 02. You may request disclosure, correction, or deletion of your personal information by contacting us at the address in Section 14.</li>
+        <li><strong>South Korea (PIPA)</strong> — If you are located in South Korea, we process your data in accordance with the Personal Information Protection Act (PIPA). You have rights to access, correction, deletion, and suspension of processing of your personal information. Requests may be submitted to us at the address in Section 14. For unresolved complaints, you may contact the Personal Information Protection Commission (PIPC): <a href="https://www.pipc.go.kr" target="_blank" rel="noopener">pipc.go.kr</a>.</li>
+        <li><strong>India (DPDP Act 2023)</strong> — If you are located in India, we process your personal data in accordance with the Digital Personal Data Protection Act, 2023. You have the right to obtain information about processing, correction, and erasure of your personal data, and to grieve against our decisions. Requests may be submitted to our contact address in Section 14.</li>
+        <li><strong>China (PIPL)</strong> — The App is not intentionally directed at users in the People's Republic of China. If you are located in China and use the App, please note that we do not maintain a local representative in China as required by the Personal Information Protection Law (PIPL) for large-scale processors. We recommend consulting local legal advice before using the App.</li>
+        <li><strong>Australia (Privacy Act)</strong> — If you are located in Australia, we handle your personal information in accordance with the Privacy Act 1988 and the Australian Privacy Principles (APPs). You may contact us to access or correct your personal information, or to make a complaint. Unresolved complaints may be referred to the Office of the Australian Information Commissioner (OAIC): <a href="https://www.oaic.gov.au" target="_blank" rel="noopener">oaic.gov.au</a>.</li>
+      </ul>
+    </section>
+
+    <section id="s18">
+      <div class="section-number">18</div>
+      <h2>Other Regions</h2>
+      <p>If you are located in a jurisdiction not specifically addressed in this policy, we process your data in accordance with the applicable local privacy law of your region. Where required by local law, we will provide additional disclosures or obtain necessary consents.</p>
+      <p>We aim to apply the principles of data minimisation, purpose limitation, and transparency globally, regardless of whether your jurisdiction has specific legislative requirements.</p>
+      <p>For jurisdiction-specific questions or to exercise any applicable privacy rights not addressed above, please contact us using the details in Section 14.</p>
+    </section>
+
+  </div>
+
+  <footer>
+    <strong>LockdIn</strong><br>
+    <span>This policy applies to all LockdIn users.</span>
+  </footer>
+
+  <script>
+    // Intersection observer for fade-in
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    sections.forEach(s => observer.observe(s));
+
+    // TOC active link highlight
+    const tocLinks = document.querySelectorAll('.toc a');
+    const sectionEls = document.querySelectorAll('section[id]');
+    const tocObserver = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          tocLinks.forEach(l => l.classList.remove('active'));
+          const active = document.querySelector(`.toc a[href="#${e.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { threshold: 0.4 });
+    sectionEls.forEach(s => tocObserver.observe(s));
+  </script>
+</body>
+</html>
